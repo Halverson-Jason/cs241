@@ -35,11 +35,8 @@ def play_again():
     else:
         return True
 
-def game_play():
-    next_game = True
-    while(next_game):
-        guess_number(get_random())
-        next_game = play_again()
-        
 game_intro()
-game_play()
+next_game = True
+while(next_game):
+    guess_number(get_random())
+    next_game = play_again()
