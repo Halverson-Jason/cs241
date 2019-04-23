@@ -17,6 +17,6 @@ def main():
     user_file = open_file(prompt_file())
     word_line_count = get_lines(user_file)
     print("The file contains %d lines and %d words." % (word_line_count[0], word_line_count[1]))
-
+    user_file.close()
 if __name__ == "__main__":
     main()
