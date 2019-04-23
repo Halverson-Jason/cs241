@@ -14,7 +14,8 @@ def compute_sum(num1, num2, num3):
 def main():
     num1 = prompt_number()
     num2 = prompt_number()
-    
+    num3 = prompt_number()
+
     sum = compute_sum(num1,num2,num3)
     
     print("The sum is: %d" % (sum))
