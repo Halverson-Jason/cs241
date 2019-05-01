@@ -26,7 +26,7 @@ def get_lines(user_file):
         rate_count +=1
     rate_average = rate_sum / rate_count
     print("\nThe average commercial rate is: {}\n".format(rate_average))
-    
+
     #TODO: remove these and place then in the appropriate place
     print_highest_rate(parse_rate(rate_highest_line))
     print_lowest_rate(parse_rate(rate_lowest_line))
@@ -38,22 +38,11 @@ def parse_rate(data):
 
 #prints the lowest rate
 def print_lowest_rate(rate):
-    #TODO: refactor the parsing of data
-    # company_name_lowest = rate[2]
-    # zip_lowest = rate[0]
-    # state_lowest = rate[3]
-    # final_rate_lowest = float(rate[6])
-    print("The lowest rate is:\n",rate['Company']," (",rate['Zip'],", ",rate['State'],") - $",rate['Rate'])
+    print("The lowest rate is:\n{} ({}, {}) - ${}".format(rate['Company'],rate['Zip'],rate['State'],rate['Rate']))
 
 #prints the highest rate
 def print_highest_rate(rate):
-    # company_name_highest = rate[2]
-    # zip_highest = rate[0]
-    # state_highest = rate[3]
-    # final_rate_highest = rate[6]
-    print("The highest rate is:\n",rate['Company']," (",rate['Zip'],", ",rate['State'],") - $",rate['Rate'])
-    
-
+    print("The highest rate is:\n{} ({}, {}) - ${}\n".format(rate['Company'],rate['Zip'],rate['State'],rate['Rate']))
 
 def main():
     f_open=open_file(prompt_file())
