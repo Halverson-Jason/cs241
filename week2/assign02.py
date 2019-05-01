@@ -14,8 +14,8 @@ def get_lines(user_file):
     rate_count = 0
     rate_highest_line = []
     rate_lowest_line = []
+
     # Ignore the first line, as it contains header information.
-    # zip,eiaid,utility_name,state,service_type,ownership,comm_rate,ind_rate,res_rate
     for line in user_file[1:]:
         data = line.split(",")
         # Find the column for comm_rate and keep track of it as needed. (You may assume the file will have a consistent ordering of columns.)
@@ -59,6 +59,5 @@ def main():
 
 # Display the utility company, zip code, state, and rate for the zip code with the lowest commercial rate in the file.
 
-# If there is a tie for the highest or lowest rate, you should display the zip code that came first in the file.
 if __name__ == "__main__":
     main()

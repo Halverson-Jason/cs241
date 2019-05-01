@@ -17,7 +17,6 @@ def main():
     num3 = prompt_number()
 
     sum = compute_sum(num1,num2,num3)
-    
     print("The sum is: %d" % (sum))
 
 if __name__ == "__main__":
