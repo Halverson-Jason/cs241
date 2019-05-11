@@ -1,4 +1,4 @@
-Your Name:
+Your Name: Jason Halverson
 
 1. In your own words, briefly describe what object-oriented programming means.
 It means to logically segment sections of code to mimic real life items. These items have properties and abilities.
