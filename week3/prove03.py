@@ -1,10 +1,14 @@
-class Robot:
+#Written by Jason Halverson
 
+class Robot:
+    """Robot class that has methods for fire(), display() and move(xcoord,ycoord)"""
+    # internal number assignments
     INITIAL_FUEL = 100
     INITIAL_COORD = 10
     DECREASE_FUEL_FIRE = 15
     DECREASE_FUEL_MOVE = 5
 
+    #constructor
     def __init__(self):
         self.set_fuel_level(self.INITIAL_FUEL)
         self._location = {"xcoordinate":self.INITIAL_COORD, "ycoordinate":self.INITIAL_COORD}
@@ -17,12 +21,14 @@ class Robot:
     def display(self):
         print("({}, {}) - Fuel: {}".format(self._location["xcoordinate"],self._location["ycoordinate"], self._fuel))
 
+    #method that accepts coordinates, assigns them to robot and decreases fuel
     def move(self, xcoord, ycoord):
         if self.check_fuel(self.DECREASE_FUEL_MOVE):
             self.set_xcoordinate(xcoord)
             self.set_ycoordinate(ycoord)
             self.decrease_fuel_level(-self.DECREASE_FUEL_MOVE)
 
+    #setters
     def set_xcoordinate(self,coordinate):
         self._location["xcoordinate"] = self._location["xcoordinate"] + coordinate
 
@@ -45,6 +51,7 @@ class Robot:
 def prompt_command():
 	return input("Enter command: ").upper()
 
+# Main game logic. Gets valid input and manipulates Robot
 
 def play_game():
     """returns true if use wants to play again"""
@@ -72,5 +79,6 @@ def main():
 	while(play):
 		play = play_game()
 	print("Goodbye.")
+
 if __name__ == "__main__":
 	main()
