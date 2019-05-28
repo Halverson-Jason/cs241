@@ -70,6 +70,7 @@ class Ball:
         self.velocity.set_dx(new_dx)
 
     def bounce_vertical(self):
+        # This is to prevent too slow of a start
         if self.velocity.get_dy() > 0:
             new_dy = -(self.velocity.get_dy()+0.2)
         else:
@@ -78,10 +79,14 @@ class Ball:
         self.velocity.set_dy(new_dy)
 
     def restart(self):
-        x = random.uniform(-2,2)
-        y = random.uniform(-2,2)
-        self.center = Point(x,y)
-        self.velocity = Velocity(x,y)
+        x_center = 0 + BALL_RADIUS*2
+        y_center = random.uniform(0,SCREEN_HEIGHT)
+        x_velocity = random.uniform(-2,2)
+        y_velocity = random.uniform(-2,2)
+
+        # TODO: get rid of slow starts
+        self.center = Point(x_center,y_center)
+        self.velocity = Velocity(x_velocity,y_velocity)
 
 class Paddle:
 
