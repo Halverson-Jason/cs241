@@ -10,6 +10,7 @@ import random
 
 from bullet import Bullet
 from point import Point
+from target import Target
 
 # These are Global constants to use throughout the game
 SCREEN_WIDTH = 600
@@ -96,7 +97,8 @@ class Game(arcade.Window):
             bullet.draw()
 
         # TODO: iterate through your targets and draw them...
-
+        for target in self.targets:
+            target.draw()
 
         self.draw_score()
 
@@ -125,6 +127,8 @@ class Game(arcade.Window):
             bullet.advance()
 
         # TODO: Iterate through your targets and tell them to advance
+        for target in self.targets:
+            target.advance()
 
     def create_target(self):
         """
@@ -133,6 +137,8 @@ class Game(arcade.Window):
         """
 
         # TODO: Decide what type of target to create and append it to the list
+        target = Target()
+        self.targets.append(target)
 
     def check_collisions(self):
         """
