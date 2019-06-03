@@ -118,7 +118,8 @@ class Game(arcade.Window):
         """
         self.check_collisions()
         self.check_off_screen()
-
+        #Re-seed random
+        random.seed()
         # decide if we should start a target
         if random.randint(1, 50) == 1:
             self.create_target()
