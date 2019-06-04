@@ -19,13 +19,13 @@ SCORE_MISS = 5
 
 class Point:
     def __init__(self):
-        self.x = random.uniform(LEFT_LIMIT,200)
-        self.y = random.uniform(25,275)
+        self.x = 0
+        self.y = 100
         
 class Velocity:
     def __init__(self):
-        self.dx = random.uniform(25,100)
-        self.dy = random.uniform(25,100)
+        self.dx = random.uniform(1,5)
+        self.dy = random.uniform(1,5)
         
 class Ball:
     def __init__(self):
@@ -36,20 +36,20 @@ class Ball:
         
     def draw(self):
         # draw the ball
-        arcade.draw_circle_filled(self.center.x, self.center.y, BALL_RADIUS, arcade.color.AERO_BLUE)
+        arcade.draw_circle_filled(self.center.x, self.center.y, BALL_RADIUS, arcade.color.BLUE)
          
-    def advance(self, delta_time):
+    def advance(self):
         
-        self.center.x += self.velocity.x * delta_time
-        self.center.y += self.velocity.y * delta_time
+        self.center.x += self.velocity.dx
+        self.center.y += self.velocity.dy
        
     def bounce_horizontal(self):
     
-        self.velocity.x *= -1
+        self.velocity.dx *= -1
     
     def bounce_vertical(self):
     
-        self.velocity.y *= -1
+        self.velocity.dy *= -1
     
     def restart(self):
         # if we are starting game over
@@ -58,22 +58,22 @@ class Ball:
 class Paddle:
 
     def __init__(self):
-        self.centerp = Point()
+        self.center = Point()
     
     def draw(self):
         #draw the paddle
-        arcade.draw_rectangle_filled(RIGHT_LIMIT, self.centerp.y, PADDLE_WIDTH, PADDLE_HEIGHT, arcade.color.CORAL_PINK)
+        arcade.draw_rectangle_filled(RIGHT_LIMIT, self.center.y, PADDLE_WIDTH, PADDLE_HEIGHT, arcade.color.CORAL_PINK)
 
     def move_up(self):
         # move paddle up
-        while self.centerp.y >= BOTTOM_LIMIT and self.centerp.y <= TOP_LIMIT:
-            self.centerp.y += MOVE_AMOUNT
+        while self.center.y >= BOTTOM_LIMIT and self.center.y <= TOP_LIMIT:
+            self.center.y += MOVE_AMOUNT
         else:
             pass
             
     def move_down(self):
         #move paddle down
-        self.centerp.y -= MOVE_AMOUNT
+        self.center.y -= MOVE_AMOUNT
         
 class Pong(arcade.Window):
    
