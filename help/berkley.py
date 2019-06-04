@@ -1,6 +1,14 @@
+"""
+File: pong.py
+Original Author: Br. Burton
+Designed to be completed by others
+This program implements a simplistic version of the
+classic Pong arcade game.
+"""
 import arcade
 import random
 
+# These are Global constants to use throughout the game
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 300
 BALL_RADIUS = 10
@@ -9,79 +17,93 @@ PADDLE_WIDTH = 10
 PADDLE_HEIGHT = 50
 MOVE_AMOUNT = 5
 
-RIGHT_LIMIT = SCREEN_WIDTH - PADDLE_WIDTH/2
-LEFT_LIMIT = 0 + BALL_RADIUS 
-TOP_LIMIT = SCREEN_HEIGHT - BALL_RADIUS
-BOTTOM_LIMIT = 0 + BALL_RADIUS
-
 SCORE_HIT = 1
 SCORE_MISS = 5
 
 class Point:
     def __init__(self):
         self.x = 0
-        self.y = 100
-        
+        self.y = 0
+
+
 class Velocity:
     def __init__(self):
-        self.dx = random.uniform(1,5)
-        self.dy = random.uniform(1,5)
-        
+        self.dx = 0
+        self.dy = 0
+
+
 class Ball:
-    def __init__(self):
-        self.center = Point()
-        self.velocity = Velocity()
+   def __init__(self):
+       self.center = Point()
+       self.velocity = Velocity()
+       self.center.x = 0
+       self.center.y = random.randint(0,SCREEN_HEIGHT)
+       self.velocity.dx = random.randint(1,4)
+       self.velocity.dy = random.randint(1,4)
 
-        
-    def draw(self):
-        # draw the ball
-        arcade.draw_circle_filled(self.center.x, self.center.y, BALL_RADIUS, arcade.color.BLUE)
-         
-    def advance(self):
-        
-        self.center.x += self.velocity.dx
-        self.center.y += self.velocity.dy
-       
-    def bounce_horizontal(self):
-    
-        self.velocity.dx *= -1
-    
-    def bounce_vertical(self):
-    
-        self.velocity.dy *= -1
-    
-    def restart(self):
-        # if we are starting game over
-        pass
-        
+   def draw(self):
+       arcade.draw_circle_filled(self.center.x, self.center.y, BALL_RADIUS, arcade.color.GREEN)
+
+   def advance(self):
+       self.center.x += self.velocity.dx
+       self.center.y += self.velocity.dy
+
+   def bounce_horizontal(self):
+      # if self.center.x >= SCREEN_WIDTH:
+       self.velocity.dx = -self.velocity.dx
+       #if self.center.x <= 0:
+           #self.velocity.dx = abs(self.velocity.dx)
+
+   def bounce_vertical(self):
+       if self.center.y >= SCREEN_HEIGHT:
+           self.velocity.dy = -self.velocity.dy
+       if self.center.y <= 0:
+           self.velocity.dy = abs(self.velocity.dy)
+
+   def restart(self):
+       self.center.x = 0
+       self.center.y = random.randint(0,300)
+       self.velocity.dx = random.randint(2,4)
+       self.velocity.dy = random.randint(2,4)
+
+
 class Paddle:
+   def __init__(self):
+       self.center = Point()
+       self.center.x = SCREEN_WIDTH - 10
 
-    def __init__(self):
-        self.center = Point()
-        self.center.x = SCREEN_WIDTH - 10
-    
-    def draw(self):
-        #draw the paddle
-        arcade.draw_rectangle_filled(self.center.x, self.center.y, PADDLE_WIDTH, PADDLE_HEIGHT, arcade.color.CORAL_PINK)
+   def draw(self):
+       arcade.draw_rectangle_filled(self.center.x, self.center.y, PADDLE_WIDTH, PADDLE_HEIGHT, arcade.color.BLACK)
 
-    def move_up(self):
-        # move paddle up
-        while self.center.y >= BOTTOM_LIMIT and self.center.y <= TOP_LIMIT:
-            self.center.y += MOVE_AMOUNT
-        else:
-            pass
-            
-    def move_down(self):
-        #move paddle down
-        self.center.y -= MOVE_AMOUNT
-        
+   def move_up(self):
+       if self.center.y <= 300:
+           self.center.y += 4
+
+   def move_down(self):
+       if self.center.y >= 0:
+           self.center.y -= 4
+
 class Pong(arcade.Window):
-   
+    """
+    This class handles all the game callbacks and interaction
+    It assumes the following classes exist:
+        Point
+        Velocity
+        Ball
+        Paddle
+    This class will then call the appropriate functions of
+    each of the above classes.
+    You are welcome to modify anything in this class,
+    but should not have to if you don't want to.
+    """
+
     def __init__(self, width, height):
+        """
+        Sets up the initial conditions of the game
+        :param width: Screen width
+        :param height: Screen height
+        """
         super().__init__(width, height)
-        
-        self.width = SCREEN_WIDTH
-        self.height = SCREEN_HEIGHT
 
         self.ball = Ball()
         self.paddle = Paddle()
@@ -91,10 +113,14 @@ class Pong(arcade.Window):
         # holding down the arrow keys
         self.holding_left = False
         self.holding_right = False
-        
+
         arcade.set_background_color(arcade.color.WHITE)
 
     def on_draw(self):
+        """
+        Called automatically by the arcade framework.
+        Handles the responsiblity of drawing all elements.
+        """
 
         # clear the screen to begin drawing
         arcade.start_render()
