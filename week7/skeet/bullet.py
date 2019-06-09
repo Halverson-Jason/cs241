@@ -7,7 +7,6 @@ import math
 RADIUS = 3
 BULLET_COLOR = arcade.color.BLUE
 BULLET_SPEED = 10
-#TODO: Refactor this
 STARTING_X = 0
 STARTING_Y = 0
 

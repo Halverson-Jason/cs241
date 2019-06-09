@@ -1,11 +1,10 @@
 from point import Point
 from velocity import Velocity
-#TODO: add is_off_screen method
-class FlyingObject:
 
+class FlyingObject:
+    """The FlyingObject has all the"""
     def __init__(self,starting_point):
         self.alive = True
-        self.starting_point = starting_point
         self.velocity = Velocity(0,0)
         self.center = starting_point
 
@@ -15,9 +14,6 @@ class FlyingObject:
     def setPoint(self, point):
         self.center = point
 
-    def getPoint(self):
-        return self.center
-
     def setVelocity(self,velocity = None, dx = None, dy = None):
         if velocity != None:
             self.velocity = velocity
@@ -25,18 +21,15 @@ class FlyingObject:
             self.velocity.set_dx(dx)
             self.velocity.set_dy(dy)
 
-    def getVelocity(self):
-        return self.velocity
-
     def advance(self):
-        self.center.add_x(self.velocity.get_dx())
-        self.center.add_y(self.velocity.get_dy())
+        self.center.add_x(self.velocity.dx)
+        self.center.add_y(self.velocity.dy)
 
     def kill(self):
         self.alive = False
 
     def is_off_screen(self,screen_width,screen_height):
-        if self.center.get_center_x() < 0 or self.center.get_center_x() > 600 or self.center.get_center_y() < 0 or self.center.get_center_y() > 500 :
+        if self.center.x < 0 or self.center.x > 600 or self.center.y < 0 or self.center.y > 500 :
             return True
         else:
             return False

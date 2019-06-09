@@ -10,11 +10,7 @@ class Point:
         return self.x
     def get_center_y(self):
         return self.y
-    def set_y_center(self,y):
-        self.y = y
-    def set_x_center(self,x):
-        self.x = x
     def add_x(self, dx):
-        self.set_x_center(self.x + dx)
+        self.x = self.x + dx
     def add_y(self, dy):
-        self.set_y_center(self.y + dy)
+        self.y = self.y + dy

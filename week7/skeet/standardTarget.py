@@ -10,4 +10,3 @@ class StandardTarget(Target):
         self.lives = 1
     def draw(self):
         arcade.draw_circle_filled(self.center.x, self.center.y, self.radius, self.targetColor)
-        
