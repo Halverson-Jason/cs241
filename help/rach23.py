@@ -11,25 +11,24 @@ class Shape(ABC):
 
     @abstractmethod
     def get_area(self):
-        return area
-    
+        pass
     def display(self):
-        print("{} - {:.2f}".format(self.name, area))
+        pass
 
 class Circle(Shape):
-   
+
     def __init__(self, radius):
         super().__init__()
         self.name = "circle"
         self.radius = radius
-        
+
     def get_area(self):
         return float(3.14 * self.radius * self.radius)
-    
-#    def display(self):
-#        self.area = get_area(radius)
-#        view = print("{} - {:.2f}".format(self.name, self.area))
-#        return view
+
+    def display(self):
+        self.area = self.get_area()
+        print("{} - {:.2f}".format(self.name, self.area))
+
 
 class Rectangle(Shape):
     def __init__(self, length, width):
@@ -37,14 +36,15 @@ class Rectangle(Shape):
         self.name = 'Rectangle'
         self.length = length
         self.width = width
-        
+
     def get_area(self, length, width):
         return float(self.length * self.width)
-    
-#    def display(self):
-#        display = print("{} - {:.2f}".format(self.name, self.area))
-#        return display
-    
+
+    def display(self):
+        self.area = self.get_area(self.length,self.width)
+        print("{} - {:.2f}".format(self.name, self.area))
+
+
 def main():
 
     shapes = []
@@ -63,11 +63,11 @@ def main():
             width = float(input("Enter the width: "))
             r = Rectangle(length, width)
             shapes.append(r)
-            
+
     #TODO: Loop through each shape in the list, and call its display function
-    print(shapes)
+
     for shape in shapes:
         shape.display()
-        
+
 if __name__ == "__main__":
     main()
