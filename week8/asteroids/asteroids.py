@@ -6,6 +6,7 @@ This program implements the asteroids game.
 """
 import arcade
 from ship import Ship
+from bullet import Bullet
 
 # These are Global constants to use throughout the game
 SCREEN_WIDTH = 800
@@ -50,11 +51,12 @@ class Game(arcade.Window):
         """
         super().__init__(width, height)
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
-        self.ship = Ship()
+        
         self.held_keys = set()
 
         # TODO: declare anything here you need the game class to track
-
+        self.ship = Ship()
+        self.bullets = []
     def on_draw(self):
         """
         Called automatically by the arcade framework.
@@ -66,6 +68,8 @@ class Game(arcade.Window):
 
         # TODO: draw each object
         self.ship.draw()
+        for bullet in self.bullets:
+            bullet.draw()
 
     def update(self, delta_time):
         """
@@ -76,6 +80,8 @@ class Game(arcade.Window):
 
         # TODO: Tell everything to advance or move forward one step in time
         self.ship.advance()
+        for bullet in self.bullets:
+            bullet.advance()
 
         # TODO: Check for collisions
 
@@ -111,7 +117,8 @@ class Game(arcade.Window):
 
             if key == arcade.key.SPACE:
                 # TODO: Fire the bullet here!
-                pass
+                newbullet = Bullet(self.ship.angle)
+                self.bullets.append(newbullet)
 
     def on_key_release(self, key: int, modifiers: int):
         """

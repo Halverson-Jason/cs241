@@ -31,10 +31,13 @@ class Ship(FlyingObject):
         self.velocity.dx += dx
         self.velocity.dy += dy
     def moveDown(self):
-        dx = math.cos(math.radians(self.angle + 90)) * SPEED
-        self.velocity.dx -= dx
-        dy = math.sin(math.radians(self.angle + 90)) * SPEED
-        self.velocity.dy -= dy
+        # Enable for reverse thrusters
+        # dx = math.cos(math.radians(self.angle + 90)) * SPEED
+        # self.velocity.dx -= dx
+        # dy = math.sin(math.radians(self.angle + 90)) * SPEED
+        # self.velocity.dy -= dy
+        self.velocity.dx = 0
+        self.velocity.dy = 0
     def draw(self):
         img = "images/playerShip1_orange.png"
         texture = arcade.load_texture(img)
