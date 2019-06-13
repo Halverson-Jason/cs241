@@ -13,11 +13,12 @@ STARTING_Y = 0
 
 
 class Bullet(FlyingObject):
-    def __init__(self,starting_point):
+    def __init__(self,starting_point, angle):
         super().__init__(starting_point)
+        self.health = 60
         self.radius = RADIUS
-        self.isAlive = True
-        self.angle = 0
+        self.angle = angle + 90
+        self.fire(self.angle)
 
     def draw(self):
         img = "images/laserBlue01.png"
@@ -35,3 +36,8 @@ class Bullet(FlyingObject):
     def fire(self, angle):
         self.velocity.dx = math.cos(math.radians(angle)) * BULLET_SPEED
         self.velocity.dy = math.sin(math.radians(angle)) * BULLET_SPEED
+    def advance(self):
+        super().advance()
+        self.health -= 1
+        if self.health < 0:
+            self.alive = False

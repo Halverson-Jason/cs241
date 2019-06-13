@@ -7,6 +7,7 @@ This program implements the asteroids game.
 import arcade
 from ship import Ship
 from bullet import Bullet
+from point import Point
 
 # These are Global constants to use throughout the game
 SCREEN_WIDTH = 800
@@ -85,6 +86,11 @@ class Game(arcade.Window):
 
         # TODO: Check for collisions
 
+        # Check for Zombies
+        for bullet in self.bullets:
+            if bullet.alive == False:
+                self.bullets.remove(bullet)
+
     def check_keys(self):
         """
         This function checks for keys that are being held down.
@@ -117,7 +123,10 @@ class Game(arcade.Window):
 
             if key == arcade.key.SPACE:
                 # TODO: Fire the bullet here!
-                newbullet = Bullet(self.ship.angle)
+                newpoint = Point()
+                newpoint.center_x = self.ship.center.center_x
+                newpoint.center_y = self.ship.center.center_y
+                newbullet = Bullet(newpoint, self.ship.angle)
                 self.bullets.append(newbullet)
 
     def on_key_release(self, key: int, modifiers: int):
