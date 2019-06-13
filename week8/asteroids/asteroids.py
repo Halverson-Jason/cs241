@@ -5,6 +5,7 @@ Designed to be completed by others
 This program implements the asteroids game.
 """
 import arcade
+from ship import Ship
 
 # These are Global constants to use throughout the game
 SCREEN_WIDTH = 800
@@ -49,7 +50,7 @@ class Game(arcade.Window):
         """
         super().__init__(width, height)
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
-
+        self.ship = Ship()
         self.held_keys = set()
 
         # TODO: declare anything here you need the game class to track
@@ -64,6 +65,7 @@ class Game(arcade.Window):
         arcade.start_render()
 
         # TODO: draw each object
+        self.ship.draw()
 
     def update(self, delta_time):
         """
@@ -73,6 +75,7 @@ class Game(arcade.Window):
         self.check_keys()
 
         # TODO: Tell everything to advance or move forward one step in time
+        self.ship.advance()
 
         # TODO: Check for collisions
 
@@ -82,16 +85,16 @@ class Game(arcade.Window):
         You will need to put your own method calls in here.
         """
         if arcade.key.LEFT in self.held_keys:
-            pass
+            self.ship.moveLeft()
 
         if arcade.key.RIGHT in self.held_keys:
-            pass
+            self.ship.moveRight()
 
         if arcade.key.UP in self.held_keys:
-            pass
+            self.ship.moveUp()
 
         if arcade.key.DOWN in self.held_keys:
-            pass
+            self.ship.moveDown()
 
         # Machine gun mode...
         #if arcade.key.SPACE in self.held_keys:

@@ -3,7 +3,7 @@ from velocity import Velocity
 
 class FlyingObject:
     """The FlyingObject has all the"""
-    def __init__(self,starting_point):
+    def __init__(self,starting_point = Point(200,200)):
         self.alive = True
         self.velocity = Velocity(0,0)
         self.center = starting_point
