@@ -20,7 +20,7 @@ class Bullet(FlyingObject):
         self.isAlive = True
 
     def draw(self):
-        arcade.draw_circle_filled(self.center.x, self.center.y, self.radius, BULLET_COLOR)
+        arcade.draw_circle_filled(self.center.center_x, self.center.center_y, self.radius, BULLET_COLOR)
     def fire(self, angle):
-        self.velocity.set_dx(math.cos(math.radians(angle)) * BULLET_SPEED)
-        self.velocity.set_dy(math.sin(math.radians(angle)) * BULLET_SPEED)
+        self.velocity.dx = math.cos(math.radians(angle)) * BULLET_SPEED
+        self.velocity.dy = math.sin(math.radians(angle)) * BULLET_SPEED

@@ -22,14 +22,14 @@ class FlyingObject:
             self.velocity.set_dy(dy)
 
     def advance(self):
-        self.center.add_x(self.velocity.dx)
-        self.center.add_y(self.velocity.dy)
+        self.center.center_x = self.velocity.dx
+        self.center.center_y = self.velocity.dy
 
     def kill(self):
         self.alive = False
 
     def is_off_screen(self,screen_width,screen_height):
-        if self.center.x < 0 or self.center.x > 600 or self.center.y < 0 or self.center.y > 500 :
+        if self.center.center_x < 0 or self.center.center_x > 600 or self.center.center_y < 0 or self.center.center_y > 500 :
             return True
         else:
             return False
