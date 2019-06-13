@@ -29,7 +29,7 @@ class FlyingObject:
             self.velocity.set_dy(dy)
 
     def advance(self):
-
+        #TODO: Screen wrap at angles is wierd
         if not self.isWrapX and self.center.center_x >= SCREEN_WIDTH:
             #TODO: Fix accessing private variables...
             self.center.x = 0
