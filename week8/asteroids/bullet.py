@@ -14,7 +14,8 @@ STARTING_Y = 0
 
 class Bullet(FlyingObject):
     def __init__(self,starting_point, angle):
-        super().__init__(starting_point)
+        super().__init__()
+        self.center = starting_point
         self.health = 60
         self.radius = RADIUS
         self.angle = angle + 90

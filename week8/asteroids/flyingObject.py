@@ -7,17 +7,17 @@ SCREEN_HEIGHT = 600
 
 class FlyingObject:
     """The FlyingObject has all the"""
-    def __init__(self,starting_point = Point(200,200)):
+    def __init__(self):
         self.alive = True
         self.velocity = Velocity(0,0)
-        self.center = starting_point
+        self.center = Point()
         self.isWrapX = False
         self.isWrapY = False
 
     def isAlive(self):
         return self.alive
 
-    def setPoint(self, point):
+    def setPoint(self, point: Point):
         self.center = point
 
     def setVelocity(self,velocity = None, dx = None, dy = None):
@@ -32,7 +32,7 @@ class FlyingObject:
         #TODO: Screen wrap at angles is wierd
         if not self.isWrapX and self.center.center_x >= SCREEN_WIDTH:
             #TODO: Fix accessing private variables...
-            self.center.x = 0
+            self.center.center_x = 0
             self.isWrapX = True
             print(self.center.center_x)
 
@@ -53,8 +53,8 @@ class FlyingObject:
             self.isWrapX = False
             self.isWrapY = False
 
-        self.center.center_x = self.velocity.dx
-        self.center.center_y = self.velocity.dy
+        self.center.add_dx(self.velocity.dx)
+        self.center.add_dy(self.velocity.dy)
 
     def kill(self):
         self.alive = False

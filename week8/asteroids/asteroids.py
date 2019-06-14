@@ -119,8 +119,8 @@ class Game(arcade.Window):
                 if bullet.alive and meteor.alive:
                     bullet_too_close = bullet.radius + meteor.radius
 
-                    if (abs(bullet.center.x - meteor.center.x) < bullet_too_close and
-                                abs(bullet.center.y - meteor.center.y) < bullet_too_close):
+                    if (abs(bullet.center.center_x - meteor.center.center_x) < bullet_too_close and
+                                abs(bullet.center.center_y - meteor.center.center_y) < bullet_too_close):
                         # its a hit!
                         bullet.alive = False
                         meteor.split()

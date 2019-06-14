@@ -7,11 +7,13 @@ import random
 
 class Meteor(FlyingObject,ABC):
     def __init__(self):
+        super().__init__()
         random.seed()
         STARTING_X = random.randint(150,300)
         STARTING_Y = 0
-        point = Point(STARTING_X,STARTING_Y)
-        super().__init__(point)
+        point = Point()
+        point.center_x = STARTING_X
+        point.center_y = STARTING_Y
         x_velocity = 0
         y_velocity = 0
         self.velocity.dx = x_velocity
