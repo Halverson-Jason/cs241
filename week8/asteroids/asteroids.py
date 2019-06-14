@@ -62,9 +62,9 @@ class Game(arcade.Window):
         self.ship.center.center_y = 250
         self.bullets = []
         self.meteors = []
-        for new_meteor in range(5):
-            new_meteor = LargeMeteor()
-            self.meteors.append(new_meteor)
+        # for new_meteor in range(5):
+        #     new_meteor = LargeMeteor()
+        #     self.meteors.append(new_meteor)
 
 
     def on_draw(self):
@@ -75,18 +75,19 @@ class Game(arcade.Window):
 
         # clear the screen to begin drawing
         arcade.start_render()
-        if not self.ship.alive:
-            self.game_over()
-        elif self.ship.alive and not self.meteors:
-            self.game_won()
-        else:
-            # TODO: draw each object
-            self.ship.draw()
-            for bullet in self.bullets:
-                bullet.draw()
-            for meteor in self.meteors:
-                meteor.draw()
-
+        # if not self.ship.alive:
+        #     self.game_over()
+        # elif self.ship.alive and not self.meteors:
+        #     self.game_won()
+        # else:
+        #     # TODO: draw each object
+        #     self.ship.draw()
+        #     for bullet in self.bullets:
+        #         bullet.draw()
+        #     for meteor in self.meteors:
+        #         meteor.draw()
+        # TODO: DELETE
+        self.ship.draw()
     def update(self, delta_time):
         """
         Update each object in the game.
