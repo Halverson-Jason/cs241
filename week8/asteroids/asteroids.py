@@ -58,12 +58,14 @@ class Game(arcade.Window):
 
         # TODO: declare anything here you need the game class to track
         self.ship = Ship()
+        self.ship.center.center_x = 250
+        self.ship.center.center_y = 250
         self.bullets = []
         self.meteors = []
         for new_meteor in range(5):
             new_meteor = LargeMeteor()
             self.meteors.append(new_meteor)
-        
+
 
     def on_draw(self):
         """
@@ -75,7 +77,7 @@ class Game(arcade.Window):
         arcade.start_render()
         if not self.ship.alive:
             self.game_over()
-        if self.ship.alive and not self.meteors:
+        elif self.ship.alive and not self.meteors:
             self.game_won()
         else:
             # TODO: draw each object
@@ -115,10 +117,10 @@ class Game(arcade.Window):
 
                 # Make sure they are both alive before checking for a collision
                 if bullet.alive and meteor.alive:
-                    too_close = bullet.radius + meteor.radius
+                    bullet_too_close = bullet.radius + meteor.radius
 
-                    if (abs(bullet.center.x - meteor.center.x) < too_close and
-                                abs(bullet.center.y - meteor.center.y) < too_close):
+                    if (abs(bullet.center.x - meteor.center.x) < bullet_too_close and
+                                abs(bullet.center.y - meteor.center.y) < bullet_too_close):
                         # its a hit!
                         bullet.alive = False
                         meteor.split()
@@ -126,6 +128,12 @@ class Game(arcade.Window):
                         # We will wait to remove the dead objects until after we
                         # finish going through the list
 
+        for meteor in self.meteors:
+            if self.ship.alive and meteor.alive:
+                too_close = self.ship.radius + meteor.radius
+                if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close) and (abs(self.ship.center.center_y - self.ship.center.center_y) < too_close):
+                    # its a hit!
+                    self.ship.alive = False
         # Now, check for anything that is dead, and remove it
         self.cleanup_zombies()
 

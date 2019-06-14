@@ -10,6 +10,7 @@ class Ship(FlyingObject):
     def __init__(self):
         super().__init__()
         self.angle = 0
+        self.radius = 30
     def moveLeft(self):
         if self.angle < 0:
             self.angle = 359
