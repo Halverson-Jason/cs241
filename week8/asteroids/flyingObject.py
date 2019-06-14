@@ -51,13 +51,39 @@ class FlyingObject:
             elif self.velocity.dx < 0:
                 if self.center.center_x > SCREEN_HEIGHT:
                     self.center.center_y = SCREEN_WIDTH - self.center.center_x
+                    self.center.center_x = SCREEN_WIDTH
                 else:
                     self.center.center_x = self.center.center_y
                     self.center.center_y = 0
             else:
                 self.center.center_y = 0
             self.isWrapY = True
-        
+
+        elif not self.isWrapY and (self.center.center_y <= 0):
+            #This adds advance wraping for bottom edge.
+            #if positive velocity
+            if self.velocity.dx > 0:
+                if self.center.center_x > SCREEN_HEIGHT:
+                    self.center.center_x = SCREEN_WIDTH - self.center.center_x
+                    self.center.center_y = SCREEN_HEIGHT
+                else:
+                    if self.center.center_x > (SCREEN_WIDTH/2):
+                        self.center.center_x = SCREEN_WIDTH - self.center.center_x
+                        self.center.center_y = SCREEN_HEIGHT
+                    else:
+                        self.center.center_y = self.center.center_x
+                        self.center.center_x = 0
+            #if negative velocity:
+            elif self.velocity.dx < 0:
+                if self.center.center_x > (SCREEN_WIDTH/2):
+                    self.center.center_y = SCREEN_WIDTH - self.center.center_x
+                    self.center.center_x = SCREEN_WIDTH
+                else:
+                    self.center.center_y = SCREEN_HEIGHT
+                    self.center.center_x = SCREEN_WIDTH - self.center.center_x
+            else:
+                self.center.center_y = SCREEN_HEIGHT
+            self.isWrapY = True
         # elif not self.isWrapX and (self.center.center_x >= SCREEN_WIDTH):
         #     self.center.center_x = 0
         #     self.isWrapX = True
