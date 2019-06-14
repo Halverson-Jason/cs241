@@ -131,9 +131,10 @@ class Game(arcade.Window):
         for meteor in self.meteors:
             if self.ship.alive and meteor.alive:
                 too_close = self.ship.radius + meteor.radius
-                if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close) and (abs(self.ship.center.center_y - self.ship.center.center_y) < too_close):
+                if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close and abs(self.ship.center.center_y - meteor.center.center_y) < too_close):
                     # its a hit!
                     self.ship.alive = False
+                    print("Meteor: {} killed ship. Ship point: {},{} Meteor point: {},{}".format(meteor, self.ship.center.center_x,self.ship.center.center_y, meteor.center.center_x, meteor.center.center_y))
         # Now, check for anything that is dead, and remove it
         self.cleanup_zombies()
 
