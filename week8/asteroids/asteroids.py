@@ -92,8 +92,12 @@ class Game(arcade.Window):
         Update each object in the game.
         :param delta_time: tells us how much time has actually elapsed
         """
-        self.check_keys()
 
+        # TODO: Check for collisions
+        self.check_collisions()
+        
+        self.check_keys()
+        
         # TODO: Tell everything to advance or move forward one step in time
         self.ship.advance()
         for bullet in self.bullets:
@@ -101,8 +105,7 @@ class Game(arcade.Window):
         for meteor in self.meteors:
             meteor.advance()
 
-        # TODO: Check for collisions
-        self.check_collisions()
+        
 
 
     def check_collisions(self):
@@ -134,7 +137,7 @@ class Game(arcade.Window):
                 if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close and abs(self.ship.center.center_y - meteor.center.center_y) < too_close):
                     # its a hit!
                     self.ship.alive = False
-                    print("Meteor: {} killed ship. Ship point: {},{} Meteor point: {},{}".format(meteor, self.ship.center.center_x,self.ship.center.center_y, meteor.center.center_x, meteor.center.center_y))
+                    
         # Now, check for anything that is dead, and remove it
         self.cleanup_zombies()
 

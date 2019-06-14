@@ -5,7 +5,7 @@ class LargeMeteor(Meteor):
     def __init__(self):
         super().__init__()
         self.img = "images/meteorGrey_big1.png"
-        self.radius = 15
+        self.radius = 25
         self.rotation = 1
         random.seed()
         x_velocity = random.uniform(-1.5,1.5)
