@@ -19,6 +19,7 @@ class Bullet(FlyingObject):
         self.radius = RADIUS
         self.angle = angle + 90
         self.fire(self.angle)
+        self.radius = 30
 
     def draw(self):
         img = "images/laserBlue01.png"
