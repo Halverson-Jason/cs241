@@ -34,7 +34,6 @@ class FlyingObject:
             #TODO: Fix accessing private variables...
             self.center.center_x = 0
             self.isWrapX = True
-            print(self.center.center_x)
 
         elif not self.isWrapX and self.center.center_x <= 0:
             self.center.center_x = SCREEN_WIDTH
@@ -42,7 +41,7 @@ class FlyingObject:
 
         elif not self.isWrapY and self.center.center_y >= SCREEN_HEIGHT:
             #TODO: Fix accessing private variables...
-            self.center.y = 0
+            self.center.center_y = 0
             self.isWrapY = True
 
         elif not self.isWrapY and self.center.center_y <= 0 :

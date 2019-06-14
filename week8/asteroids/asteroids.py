@@ -95,7 +95,7 @@ class Game(arcade.Window):
 
         # TODO: Check for collisions
         self.check_collisions()
-        
+
         self.check_keys()
         
         # TODO: Tell everything to advance or move forward one step in time
@@ -130,14 +130,14 @@ class Game(arcade.Window):
 
                         # We will wait to remove the dead objects until after we
                         # finish going through the list
-
-        for meteor in self.meteors:
-            if self.ship.alive and meteor.alive:
-                too_close = self.ship.radius + meteor.radius
-                if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close and abs(self.ship.center.center_y - meteor.center.center_y) < too_close):
-                    # its a hit!
-                    self.ship.alive = False
-                    
+        """ Testing wrap
+                for meteor in self.meteors:
+                    if self.ship.alive and meteor.alive:
+                        too_close = self.ship.radius + meteor.radius
+                        if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close and abs(self.ship.center.center_y - meteor.center.center_y) < too_close):
+                            # its a hit!
+                            self.ship.alive = False
+        """                  
         # Now, check for anything that is dead, and remove it
         self.cleanup_zombies()
 
