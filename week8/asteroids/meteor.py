@@ -40,5 +40,5 @@ class Meteor(FlyingObject,ABC):
 
         arcade.draw_texture_rectangle(x, y, width, height, texture, angle, alpha)
     @abstractmethod
-    def split(self):
+    def split(self,meteorList: list):
         pass

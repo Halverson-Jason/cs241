@@ -29,74 +29,18 @@ class FlyingObject:
             self.velocity.set_dy(dy)
 
     def advance(self):
-        #TODO: Screen wrap at angles is wierd
-        #TODO: Refactor Modifier variable
-        modifier = SCREEN_WIDTH/SCREEN_HEIGHT
 
-        if not self.isWrapY and (self.center.center_y >= SCREEN_HEIGHT):
-            #This adds advance wraping for top edge.
-            #if positive velocity
-            if self.velocity.dx > 0:
-                if self.center.center_x > SCREEN_HEIGHT:
-                    self.center.center_x = SCREEN_WIDTH - self.center.center_x
-                    self.center.center_y = 0
-                else:
-                    if self.center.center_x > (SCREEN_WIDTH/2):
-                        self.center.center_x = SCREEN_WIDTH - self.center.center_x
-                        self.center.center_y = 0
-                    else:
-                        self.center.center_y = self.center.center_x
-                        self.center.center_x = 0
-            #if negative velocity:
-            elif self.velocity.dx < 0:
-                if self.center.center_x > SCREEN_HEIGHT:
-                    self.center.center_y = SCREEN_WIDTH - self.center.center_x
-                    self.center.center_x = SCREEN_WIDTH
-                else:
-                    self.center.center_x = self.center.center_y
-                    self.center.center_y = 0
-            else:
-                self.center.center_y = 0
-            self.isWrapY = True
+        if self.center.center_x >= SCREEN_WIDTH:
+            self.center.center_x = 0
 
-        elif not self.isWrapY and (self.center.center_y <= 0):
-            #This adds advance wraping for bottom edge.
-            #if positive velocity
-            if self.velocity.dx > 0:
-                if self.center.center_x > SCREEN_HEIGHT:
-                    self.center.center_x = SCREEN_WIDTH - self.center.center_x
-                    self.center.center_y = SCREEN_HEIGHT
-                else:
-                    if self.center.center_x > (SCREEN_WIDTH/2):
-                        self.center.center_x = SCREEN_WIDTH - self.center.center_x
-                        self.center.center_y = SCREEN_HEIGHT
-                    else:
-                        self.center.center_y = self.center.center_x
-                        self.center.center_x = 0
-            #if negative velocity:
-            elif self.velocity.dx < 0:
-                if self.center.center_x > (SCREEN_WIDTH/2):
-                    self.center.center_y = SCREEN_WIDTH - self.center.center_x
-                    self.center.center_x = SCREEN_WIDTH
-                else:
-                    self.center.center_y = SCREEN_HEIGHT
-                    self.center.center_x = SCREEN_WIDTH - self.center.center_x
-            else:
-                self.center.center_y = SCREEN_HEIGHT
-            self.isWrapY = True
-        # elif not self.isWrapX and (self.center.center_x >= SCREEN_WIDTH):
-        #     self.center.center_x = 0
-        #     self.isWrapX = True
-        #     print("x: {} y: {}".format(self.center.center_x, self.center.center_y))
+        elif self.center.center_x <= 0:
+            self.center.center_x = SCREEN_WIDTH
 
-        # elif not self.isWrapX and (self.center.center_x <= 0):
-        #     self.center.center_x = SCREEN_WIDTH
-        #     self.isWrapX = True
+        if self.center.center_y >= SCREEN_HEIGHT:
+            self.center.center_y = 0
 
-
-        else:
-            self.isWrapX = False
-            self.isWrapY = False
+        elif self.center.center_y <= 0 :
+            self.center.center_y = SCREEN_HEIGHT
 
         self.center.add_dx(self.velocity.dx)
         self.center.add_dy(self.velocity.dy)

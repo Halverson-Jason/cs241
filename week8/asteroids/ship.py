@@ -10,7 +10,7 @@ class Ship(FlyingObject):
     def __init__(self):
         super().__init__()
         self.angle = 0
-        self.radius = 45 # I know this should be 30 but the size of the img is 99px wide so 45 is closer to radius 
+        self.radius = 45 # I know this should be 30 but the size of the img is 99px wide so 45 is closer to radius
     def moveLeft(self):
         if self.angle < 0:
             self.angle = 359

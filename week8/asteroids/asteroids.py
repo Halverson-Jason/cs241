@@ -62,9 +62,9 @@ class Game(arcade.Window):
         self.ship.center.center_y = 250
         self.bullets = []
         self.meteors = []
-        # for new_meteor in range(5):
-        #     new_meteor = LargeMeteor()
-        #     self.meteors.append(new_meteor)
+        for new_meteor in range(5):
+            new_meteor = LargeMeteor()
+            self.meteors.append(new_meteor)
 
 
     def on_draw(self):
@@ -75,38 +75,38 @@ class Game(arcade.Window):
 
         # clear the screen to begin drawing
         arcade.start_render()
-        # if not self.ship.alive:
-        #     self.game_over()
-        # elif self.ship.alive and not self.meteors:
-        #     self.game_won()
-        # else:
-        #     # TODO: draw each object
-        #     self.ship.draw()
-        #     for bullet in self.bullets:
-        #         bullet.draw()
-        #     for meteor in self.meteors:
-        #         meteor.draw()
-        # TODO: DELETE
-        self.ship.draw()
+        if not self.ship.alive:
+            self.game_over()
+        elif not self.meteors:
+            self.game_won()
+        else:
+            # draw each object
+            self.ship.draw()
+            for bullet in self.bullets:
+                bullet.draw()
+            for meteor in self.meteors:
+                meteor.draw()
+            self.ship.draw()
+
     def update(self, delta_time):
         """
         Update each object in the game.
         :param delta_time: tells us how much time has actually elapsed
         """
 
-        # TODO: Check for collisions
+        # Check for collisions
         self.check_collisions()
 
         self.check_keys()
-        
-        # TODO: Tell everything to advance or move forward one step in time
+
+        # Tell everything to advance or move forward one step in time
         self.ship.advance()
         for bullet in self.bullets:
             bullet.advance()
         for meteor in self.meteors:
             meteor.advance()
 
-        
+
 
 
     def check_collisions(self):
@@ -127,18 +127,15 @@ class Game(arcade.Window):
                                 abs(bullet.center.center_y - meteor.center.center_y) < bullet_too_close):
                         # its a hit!
                         bullet.alive = False
-                        meteor.split()
+                        meteor.split(self.meteors)
 
-                        # We will wait to remove the dead objects until after we
-                        # finish going through the list
-        """ Testing wrap
-                for meteor in self.meteors:
-                    if self.ship.alive and meteor.alive:
-                        too_close = self.ship.radius + meteor.radius
-                        if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close and abs(self.ship.center.center_y - meteor.center.center_y) < too_close):
-                            # its a hit!
-                            self.ship.alive = False
-        """                  
+        for meteor in self.meteors:
+            if self.ship.alive and meteor.alive:
+                too_close = self.ship.radius + meteor.radius
+                if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close and abs(self.ship.center.center_y - meteor.center.center_y) < too_close):
+                    # its a hit!
+                    self.ship.alive = False
+
         # Now, check for anything that is dead, and remove it
         self.cleanup_zombies()
 
