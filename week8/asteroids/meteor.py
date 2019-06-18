@@ -6,14 +6,20 @@ from point import Point
 import random
 
 class Meteor(FlyingObject,ABC):
-    def __init__(self):
+    def __init__(self,starting_point = None):
         super().__init__()
-        random.seed()
-        STARTING_X = random.randint(150,300)
-        STARTING_Y = 0
-        point = Point()
-        point.center_x = STARTING_X
-        point.center_y = STARTING_Y
+        if starting_point == None:
+            random.seed()
+            STARTING_X = random.randint(150,300)
+            STARTING_Y = 0
+            
+            self.center.center_x = STARTING_X
+            self.center.center_y = STARTING_Y
+            
+        else:
+            self.center.center_x = starting_point.center.center_x
+            self.center.center_y = starting_point.center.center_y
+
         x_velocity = 0
         y_velocity = 0
         self.velocity.dx = x_velocity

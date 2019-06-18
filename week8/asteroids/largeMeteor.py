@@ -18,7 +18,11 @@ class LargeMeteor(Meteor):
     def split(self,meteorList: list):
         for mediumMeteor in range(2):
             mediumMeteor = MediumMeteor()
+            mediumMeteor.center.center_x = self.center.center_x
+            mediumMeteor.center.center_y = self.center.center_y
             meteorList.append(mediumMeteor)
         smallMeteor = SmallMeteor()
+        smallMeteor.center.center_x = self.center.center_x
+        smallMeteor.center.center_y = self.center.center_y
         meteorList.append(smallMeteor)
         self.alive = False
