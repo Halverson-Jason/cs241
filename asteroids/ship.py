@@ -47,8 +47,8 @@ class Ship(FlyingObject):
         height = texture.height
         alpha = 255 # For transparency
 
-        x = self.center.center_x
-        y = self.center.center_y
+        x = self.center.x
+        y = self.center.y
         angle = self.angle
 
         arcade.draw_texture_rectangle(x, y, width, height, texture, angle, alpha)

@@ -26,8 +26,8 @@ class MediumMeteor(Meteor):
             smallMeteor = SmallMeteor()
             smallMeteor.velocity.dx = meteor_velocity_dx
             smallMeteor.velocity.dy = meteor_velocity_dy
-            smallMeteor.center.center_x = self.center.center_x
-            smallMeteor.center.center_y = self.center.center_y
+            smallMeteor.center.x = self.center.x
+            smallMeteor.center.y = self.center.y
             
 
             meteorList.append(smallMeteor)

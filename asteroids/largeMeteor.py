@@ -28,14 +28,14 @@ class LargeMeteor(Meteor):
             mediumMeteor = MediumMeteor()
             mediumMeteor.velocity.dx = mediumMeteor_velocity_dx
             mediumMeteor.velocity.dy = mediumMeteor_velocity_dy
-            mediumMeteor.center.center_x = self.center.center_x
-            mediumMeteor.center.center_y = self.center.center_y
+            mediumMeteor.center.x = self.center.x
+            mediumMeteor.center.y = self.center.y
             meteorList.append(mediumMeteor)
 
 
         smallMeteor = SmallMeteor()
-        smallMeteor.center.center_x = self.center.center_x
-        smallMeteor.center.center_y = self.center.center_y
+        smallMeteor.center.x = self.center.x
+        smallMeteor.center.y = self.center.y
         smallMeteor.velocity.dx = self.velocity.dx + 5
         meteorList.append(smallMeteor)
         self.alive = False

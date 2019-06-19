@@ -34,7 +34,7 @@ MEDIUM_ROCK_RADIUS = 5
 SMALL_ROCK_SPIN = 5
 SMALL_ROCK_RADIUS = 2
 
-MACHINE_GUN_WAIT = 10
+MACHINE_GUN_WAIT = 5
 
 
 class Game(arcade.Window):
@@ -54,18 +54,19 @@ class Game(arcade.Window):
         super().__init__(width, height)
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
         self.machineGunWait = MACHINE_GUN_WAIT
-        self.held_keys = set()
 
-        # TODO: declare anything here you need the game class to track
+        self.setup()
+
+    def setup(self):
+        self.held_keys = set()
         self.ship = Ship()
-        self.ship.center.center_x = 250
-        self.ship.center.center_y = 250
+        self.ship.center.x = 250
+        self.ship.center.y = 250
         self.bullets = []
         self.meteors = []
         for new_meteor in range(5):
             new_meteor = LargeMeteor()
             self.meteors.append(new_meteor)
-
 
     def on_draw(self):
         """
@@ -75,18 +76,20 @@ class Game(arcade.Window):
 
         # clear the screen to begin drawing
         arcade.start_render()
+
+        #evaluate if game over/won
         if not self.ship.alive:
             self.game_over()
         elif not self.meteors:
             self.game_won()
-        else:
-            # draw each object
-            self.ship.draw()
-            for bullet in self.bullets:
-                bullet.draw()
-            for meteor in self.meteors:
-                meteor.draw()
-            self.ship.draw()
+
+        # draw each object
+        self.ship.draw()
+        for bullet in self.bullets:
+            bullet.draw()
+        for meteor in self.meteors:
+            meteor.draw()
+        self.ship.draw()
 
     def update(self, delta_time):
         """
@@ -106,9 +109,6 @@ class Game(arcade.Window):
         for meteor in self.meteors:
             meteor.advance()
 
-
-
-
     def check_collisions(self):
         """
         Checks to see if bullets have hit targets.
@@ -123,8 +123,8 @@ class Game(arcade.Window):
                 if bullet.alive and meteor.alive:
                     bullet_too_close = bullet.radius + meteor.radius
 
-                    if (abs(bullet.center.center_x - meteor.center.center_x) < bullet_too_close and
-                                abs(bullet.center.center_y - meteor.center.center_y) < bullet_too_close):
+                    if (abs(bullet.center.x - meteor.center.x) < bullet_too_close and
+                                abs(bullet.center.y - meteor.center.y) < bullet_too_close):
                         # its a hit!
                         bullet.alive = False
                         meteor.split(self.meteors)
@@ -132,7 +132,7 @@ class Game(arcade.Window):
         for meteor in self.meteors:
             if self.ship.alive and meteor.alive:
                 too_close = self.ship.radius + meteor.radius
-                if (abs(self.ship.center.center_x - meteor.center.center_x) < too_close and abs(self.ship.center.center_y - meteor.center.center_y) < too_close):
+                if (abs(self.ship.center.x - meteor.center.x) < too_close and abs(self.ship.center.y - meteor.center.y) < too_close):
                     # its a hit!
                     self.ship.alive = False
 
@@ -173,10 +173,8 @@ class Game(arcade.Window):
         if arcade.key.SPACE in self.held_keys:
             # Wait for machine gun so it's not a stream
             if self.machineGunWait == 0:
-                newpoint = Point()
-                newpoint.center_x = self.ship.center.center_x
-                newpoint.center_y = self.ship.center.center_y
-                newbullet = Bullet(newpoint, self.ship.angle)
+                starting_point = self.ship.center.copy()
+                newbullet = Bullet(starting_point, self.ship.angle)
                 self.bullets.append(newbullet)
                 self.machineGunWait = MACHINE_GUN_WAIT
             else:
@@ -193,10 +191,8 @@ class Game(arcade.Window):
 
             if key == arcade.key.SPACE:
                 # TODO: Fire the bullet here!
-                newpoint = Point()
-                newpoint.center_x = self.ship.center.center_x
-                newpoint.center_y = self.ship.center.center_y
-                newbullet = Bullet(newpoint, self.ship.angle)
+                starting_point = self.ship.center.copy()
+                newbullet = Bullet(starting_point, self.ship.angle)
                 self.bullets.append(newbullet)
 
     def on_key_release(self, key: int, modifiers: int):

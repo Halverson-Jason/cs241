@@ -12,18 +12,14 @@ class Meteor(FlyingObject,ABC):
             random.seed()
             STARTING_X = random.randint(150,300)
             STARTING_Y = 0
-            
-            self.center.center_x = STARTING_X
-            self.center.center_y = STARTING_Y
-            
-        else:
-            self.center.center_x = starting_point.center.center_x
-            self.center.center_y = starting_point.center.center_y
 
-        x_velocity = 0
-        y_velocity = 0
-        self.velocity.dx = x_velocity
-        self.velocity.dy = y_velocity
+            self.center.x = STARTING_X
+            self.center.y = STARTING_Y
+
+        else:
+            self.center.x = starting_point.center.x
+            self.center.y = starting_point.center.y
+
         self.rotation = 0
         self.rotation_direction = random.uniform(-1,1)
         self.angle = 0
@@ -39,8 +35,8 @@ class Meteor(FlyingObject,ABC):
         height = texture.height
         alpha = 255 # For transparency
 
-        x = self.center.center_x
-        y = self.center.center_y
+        x = self.center.x
+        y = self.center.y
         self.rotation += self.rotation_direction
         angle = self.rotation
 
