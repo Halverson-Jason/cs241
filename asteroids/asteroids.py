@@ -14,6 +14,8 @@ from largeMeteor import LargeMeteor
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+GAME_TEXT_COORD_X = 150
+
 BULLET_RADIUS = 30
 BULLET_SPEED = 10
 BULLET_LIFE = 60
@@ -36,6 +38,7 @@ SMALL_ROCK_RADIUS = 2
 
 MACHINE_GUN_WAIT = 5
 
+NUMBER_OF_STARTING_METEORS = 5
 
 class Game(arcade.Window):
     """
@@ -59,12 +62,13 @@ class Game(arcade.Window):
 
     def setup(self):
         self.held_keys = set()
+        #TODO: when instatiating a ship set coordinates
         self.ship = Ship()
         self.ship.center.x = 250
         self.ship.center.y = 250
         self.bullets = []
         self.meteors = []
-        for new_meteor in range(5):
+        for new_meteor in range(NUMBER_OF_STARTING_METEORS):
             new_meteor = LargeMeteor()
             self.meteors.append(new_meteor)
 
@@ -206,7 +210,7 @@ class Game(arcade.Window):
         Puts Game Over on the screen
         """
         text = "Game Over"
-        start_x = 150
+        start_x = GAME_TEXT_COORD_X
         start_y = SCREEN_HEIGHT / 2
         arcade.draw_text(text, start_x=start_x, start_y=start_y, font_size=72, color=arcade.color.RED)
     def game_won(self):
@@ -214,7 +218,7 @@ class Game(arcade.Window):
         Puts Game Over on the screen
         """
         text = "You Won!!!"
-        start_x = 150
+        start_x = GAME_TEXT_COORD_X
         start_y = SCREEN_HEIGHT / 2
         arcade.draw_text(text, start_x=start_x, start_y=start_y, font_size=72, color=arcade.color.GREEN)
 # Creates the game and starts it going

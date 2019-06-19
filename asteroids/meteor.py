@@ -5,12 +5,15 @@ from flyingObject import FlyingObject
 from point import Point
 import random
 
+RANDOM_START = 150
+RANDOM_END = 300
+
 class Meteor(FlyingObject,ABC):
     def __init__(self,starting_point = None):
         super().__init__()
         if starting_point == None:
             random.seed()
-            STARTING_X = random.randint(150,300)
+            STARTING_X = random.randint(RANDOM_START,RANDOM_END)
             STARTING_Y = 0
 
             self.center.x = STARTING_X

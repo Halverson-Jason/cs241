@@ -49,7 +49,7 @@ class FlyingObject:
         self.alive = False
 
     def is_off_screen(self,screen_width,screen_height):
-        if self.center.x < 0 or self.center.x > 600 or self.center.y < 0 or self.center.y > 500 :
+        if self.center.x < 0 or self.center.x > SCREEN_WIDTH or self.center.y < 0 or self.center.y > SCREEN_HEIGHT :
             return True
         else:
             return False

@@ -10,17 +10,19 @@ BULLET_SPEED = 10
 #TODO: Refactor this
 STARTING_X = 0
 STARTING_Y = 0
+INITIAL_HEALTH = 60
+ANGLE_ADJUSTMENT = 90
+
 
 
 class Bullet(FlyingObject):
     def __init__(self,starting_point, angle):
         super().__init__()
         self.center = starting_point
-        self.health = 60
+        self.health = INITIAL_HEALTH
         self.radius = RADIUS
-        self.angle = angle + 90
+        self.angle = angle + ANGLE_ADJUSTMENT
         self.fire(self.angle)
-        self.radius = 30
 
     def draw(self):
         img = "images/laserBlue01.png"
