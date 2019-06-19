@@ -22,3 +22,9 @@ class Point:
     @y.setter
     def y(self,y):
         self._y = y
+    @property
+    def coordinate(self):
+        return (self.x,self.y)
+    @coordinate.setter
+    def coordinate(self,coord):
+        self.x,self.y = coord

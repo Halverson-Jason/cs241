@@ -40,6 +40,9 @@ MACHINE_GUN_WAIT = 5
 
 NUMBER_OF_STARTING_METEORS = 5
 
+SHIP_START_X = 250
+SHIP_START_Y = 250
+
 class Game(arcade.Window):
     """
     This class handles all the game callbacks and interaction
@@ -64,8 +67,8 @@ class Game(arcade.Window):
         self.held_keys = set()
         #TODO: when instatiating a ship set coordinates
         self.ship = Ship()
-        self.ship.center.x = 250
-        self.ship.center.y = 250
+        self.ship.center.x = SHIP_START_X
+        self.ship.center.y = SHIP_START_Y
         self.bullets = []
         self.meteors = []
         for new_meteor in range(NUMBER_OF_STARTING_METEORS):

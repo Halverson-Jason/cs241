@@ -4,7 +4,7 @@ from velocity import Velocity
 import arcade
 import math
 
-RADIUS = 3
+RADIUS = 5
 BULLET_COLOR = arcade.color.BLUE
 BULLET_SPEED = 10
 #TODO: Refactor this

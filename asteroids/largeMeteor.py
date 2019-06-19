@@ -19,34 +19,31 @@ class LargeMeteor(Meteor):
         self.radius = RADIUS # I know this should be 15 but 25 is closer to the radius for a 100px object
         self.rotation = 1
         random.seed()
-        x_velocity = random.uniform(-RANDOM_LIMIT,RANDOM_LIMIT)
-        y_velocity = random.uniform(-RANDOM_LIMIT,RANDOM_LIMIT)
-        self.velocity.dx = x_velocity
-        self.velocity.dy = y_velocity
+        dx = random.uniform(-RANDOM_LIMIT,RANDOM_LIMIT)
+        dy = random.uniform(-RANDOM_LIMIT,RANDOM_LIMIT)
+        self.velocity.dx = dx
+        self.velocity.dy = dy
 
     def split(self,meteorList: list):
         for mediumMeteor in range(MEDIUM_METEOR_NUM):
 
             if mediumMeteor == 0:
-                mediumMeteor_velocity_dy = self.velocity.dy + MEDIUM_VELOCITY_CHANGE
-
+                dy = self.velocity.dy + MEDIUM_VELOCITY_CHANGE
 
             else:
-                mediumMeteor_velocity_dy = self.velocity.dy - MEDIUM_VELOCITY_CHANGE
+                dy = self.velocity.dy - MEDIUM_VELOCITY_CHANGE
 
-
-            mediumMeteor_velocity_dx = self.velocity.dx
+            dx = self.velocity.dx
             mediumMeteor = MediumMeteor()
-            mediumMeteor.velocity.dx = mediumMeteor_velocity_dx
-            mediumMeteor.velocity.dy = mediumMeteor_velocity_dy
-            mediumMeteor.center.x = self.center.x
-            mediumMeteor.center.y = self.center.y
+            mediumMeteor.velocity.set = (dx,dy)
+
+            mediumMeteor.center.coordinate = (self.center.x,self.center.y)
+
             meteorList.append(mediumMeteor)
 
 
         smallMeteor = SmallMeteor()
-        smallMeteor.center.x = self.center.x
-        smallMeteor.center.y = self.center.y
+        smallMeteor.center.coordinate = (self.center.x,self.center.y)
         smallMeteor.velocity.dx = self.velocity.dx + SMALL_VELOCITY_CHANGE
     
         meteorList.append(smallMeteor)
