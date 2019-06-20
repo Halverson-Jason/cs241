@@ -36,7 +36,7 @@ class LargeMeteor(Meteor):
             mediumMeteor.velocity.vector = (dx,dy)
             meteorList.append(mediumMeteor)
 
-        smallMeteor = SmallMeteor(self.center.copy())
+        smallMeteor = SmallMeteor(self.center)
         smallMeteor.velocity.dx = self.velocity.dx + SMALL_VELOCITY_CHANGE
 
         meteorList.append(smallMeteor)

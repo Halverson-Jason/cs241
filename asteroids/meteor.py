@@ -50,9 +50,9 @@ class Meteor(FlyingObject,ABC):
         return Velocity(dx,dy)
     def get_random_point(self,negative_limit,positive_limit):
         random.seed()
-        dx = random.uniform(negative_limit,positive_limit)
-        dy = random.uniform(negative_limit,positive_limit)
-        return Point(dx,dy)
+        x = random.uniform(negative_limit,positive_limit)
+        y = random.uniform(negative_limit,positive_limit)
+        return Point(x,y)
 
     @abstractmethod
     def split(self,meteorList: list):

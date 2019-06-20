@@ -135,7 +135,7 @@ class Game(arcade.Window):
                     if (abs(bullet.center.x - meteor.center.x) < bullet_too_close and
                                 abs(bullet.center.y - meteor.center.y) < bullet_too_close):
                         # its a hit!
-                        bullet.alive = False
+                        bullet.kill()
                         meteor.split(self.meteors)
 
         for meteor in self.meteors:
@@ -143,7 +143,7 @@ class Game(arcade.Window):
                 too_close = self.ship.radius + meteor.radius
                 if (abs(self.ship.center.x - meteor.center.x) < too_close and abs(self.ship.center.y - meteor.center.y) < too_close):
                     # its a hit!
-                    self.ship.alive = False
+                    self.ship.kill()
 
         # Now, check for anything that is dead, and remove it
         self.cleanup_zombies()
