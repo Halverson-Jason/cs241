@@ -7,12 +7,16 @@ SCREEN_HEIGHT = 600
 
 class FlyingObject:
     """The FlyingObject has all the"""
-    def __init__(self,center=Point()):
+    def __init__(self,center=None):
         self.alive = True
-        self.velocity = Velocity(0,0)
-        self.center = center
+        self.velocity = Velocity()
         self.isWrapX = False
         self.isWrapY = False
+
+        if center == None:
+            self.center = Point()
+        else:
+            self.center = center.copy()
 
     def isAlive(self):
         return self.alive

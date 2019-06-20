@@ -3,6 +3,7 @@ from abc import ABC
 from abc import abstractmethod
 from flyingObject import FlyingObject
 from point import Point
+from velocity import Velocity
 import random
 
 RANDOM_START = 150
@@ -15,7 +16,6 @@ class Meteor(FlyingObject,ABC):
             random.seed()
             STARTING_X = random.randint(RANDOM_START,RANDOM_END)
             STARTING_Y = 0
-
             center = Point(STARTING_X,STARTING_Y)
 
         else:
@@ -43,6 +43,17 @@ class Meteor(FlyingObject,ABC):
         angle = self.rotation
 
         arcade.draw_texture_rectangle(x, y, width, height, texture, angle, alpha)
+    def get_random_velocity(self,negative_limit,positive_limit):
+        random.seed()
+        dx = random.uniform(negative_limit,positive_limit)
+        dy = random.uniform(negative_limit,positive_limit)
+        return Velocity(dx,dy)
+    def get_random_point(self,negative_limit,positive_limit):
+        random.seed()
+        dx = random.uniform(negative_limit,positive_limit)
+        dy = random.uniform(negative_limit,positive_limit)
+        return Point(dx,dy)
+
     @abstractmethod
     def split(self,meteorList: list):
         pass

@@ -2,7 +2,7 @@ from meteor import Meteor
 
 import random
 
-RADIUS = 2
+RADIUS = 5
 ROTATION = 5
 
 RANDOM_LIMIT = 1.5
@@ -12,13 +12,8 @@ class SmallMeteor(Meteor):
     def __init__(self,starting_point = None):
         super().__init__(starting_point)
         self.img = "images/meteorGrey_small1.png"
-        self.radius = RADIUS # I know this should be 15 but 25 is closer to the radius for a 100px object
+        self.radius = RADIUS # I know this should be 2 but 5 is closer to the radius for a 25px object
         self.rotation = ROTATION
-        random.seed()
-        x_velocity = random.uniform(-RANDOM_LIMIT,RANDOM_LIMIT)
-        y_velocity = random.uniform(-RANDOM_LIMIT,RANDOM_LIMIT)
-        self.velocity.dx = x_velocity
-        self.velocity.dy = y_velocity
 
     def split(self,meteorList: list):
         self.alive = False
