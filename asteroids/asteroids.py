@@ -8,6 +8,7 @@ import arcade
 from ship import Ship
 from bullet import Bullet
 from point import Point
+from meteor import Meteor
 from largeMeteor import LargeMeteor
 
 # These are Global constants to use throughout the game
@@ -66,12 +67,13 @@ class Game(arcade.Window):
     def setup(self):
         self.held_keys = set()
         #TODO: when instatiating a ship set coordinates
-        self.ship = Ship()
-        self.ship.center.x = SHIP_START_X
-        self.ship.center.y = SHIP_START_Y
+        self.ship = Ship(Point(SHIP_START_X,SHIP_START_Y))
+        # self.ship.center.x = SHIP_START_X
+        # self.ship.center.y = SHIP_START_Y
         self.bullets = []
         self.meteors = []
         for new_meteor in range(NUMBER_OF_STARTING_METEORS):
+            #TODO: pass a new meteor that creates large meteor
             new_meteor = LargeMeteor()
             self.meteors.append(new_meteor)
 

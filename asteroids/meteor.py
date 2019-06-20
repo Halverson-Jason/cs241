@@ -10,19 +10,18 @@ RANDOM_END = 300
 
 class Meteor(FlyingObject,ABC):
     def __init__(self,starting_point = None):
-        super().__init__()
+
         if starting_point == None:
             random.seed()
             STARTING_X = random.randint(RANDOM_START,RANDOM_END)
             STARTING_Y = 0
 
-            self.center.x = STARTING_X
-            self.center.y = STARTING_Y
+            center = Point(STARTING_X,STARTING_Y)
 
         else:
-            self.center.x = starting_point.center.x
-            self.center.y = starting_point.center.y
+            center = starting_point.copy()
 
+        super().__init__(center)
         self.rotation = 0
         self.rotation_direction = random.uniform(-1,1)
         self.angle = 0

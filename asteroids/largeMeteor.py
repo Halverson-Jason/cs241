@@ -13,8 +13,8 @@ MEDIUM_VELOCITY_CHANGE = 2
 SMALL_VELOCITY_CHANGE = 5
 
 class LargeMeteor(Meteor):
-    def __init__(self):
-        super().__init__()
+    def __init__(self,starting_point = None):
+        super().__init__(starting_point)
         self.img = "images/meteorGrey_big1.png"
         self.radius = RADIUS # I know this should be 15 but 25 is closer to the radius for a 100px object
         self.rotation = 1
@@ -29,22 +29,16 @@ class LargeMeteor(Meteor):
 
             if mediumMeteor == 0:
                 dy = self.velocity.dy + MEDIUM_VELOCITY_CHANGE
-
             else:
                 dy = self.velocity.dy - MEDIUM_VELOCITY_CHANGE
 
             dx = self.velocity.dx
-            mediumMeteor = MediumMeteor()
+            mediumMeteor = MediumMeteor(self.center.copy())
             mediumMeteor.velocity.set = (dx,dy)
-
-            mediumMeteor.center.coordinate = (self.center.x,self.center.y)
-
             meteorList.append(mediumMeteor)
 
-
-        smallMeteor = SmallMeteor()
-        smallMeteor.center.coordinate = (self.center.x,self.center.y)
+        smallMeteor = SmallMeteor(self.center.copy())
         smallMeteor.velocity.dx = self.velocity.dx + SMALL_VELOCITY_CHANGE
-    
+
         meteorList.append(smallMeteor)
         self.alive = False

@@ -10,8 +10,8 @@ ROTATE_AMOUNT = 3
 RADIUS = 45
 
 class Ship(FlyingObject):
-    def __init__(self):
-        super().__init__()
+    def __init__(self,starting_point:Point):
+        super().__init__(center=starting_point)
         self.angle = 0
         self.radius = RADIUS # I know this should be 30 but the size of the img is 99px wide so 45 is closer to radius
     def moveLeft(self):
