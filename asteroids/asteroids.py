@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 File: asteroids.py
 Original Author: Br. Burton

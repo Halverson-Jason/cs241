@@ -4,7 +4,7 @@ import random
 
 SMALL_METEOR_NUM = 2
 
-RADIUS = 10
+RADIUS = 7
 ROTATION = -2
 
 RANDOM_LIMIT = 1.5
@@ -14,7 +14,7 @@ class MediumMeteor(Meteor):
     def __init__(self,starting_point = None):
         super().__init__(starting_point)
         self.img = "images/meteorGrey_med1.png"
-        self.radius = RADIUS # I know this should be 5 but 10 is closer to the radius for a 50px object
+        self.radius = RADIUS # I know this should be 5 but 7 is closer to the radius for a 50px object
         self.rotation = ROTATION
 
     def split(self,meteorList: list):
