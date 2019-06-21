@@ -12,6 +12,9 @@ from point import Point
 from meteor import Meteor
 from largeMeteor import LargeMeteor
 
+#TODO: http://arcade.academy/examples/instruction_and_game_over_screens.html
+#TODO: Add class method to flyingobject to set game state like screen width
+
 # These are Global constants to use throughout the game
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -67,10 +70,9 @@ class Game(arcade.Window):
 
     def setup(self):
         self.held_keys = set()
-        #TODO: when instatiating a ship set coordinates
-        self.ship = Ship(Point(SHIP_START_X,SHIP_START_Y))
-        # self.ship.center.x = SHIP_START_X
-        # self.ship.center.y = SHIP_START_Y
+        ship_starting_point = Point(SHIP_START_X,SHIP_START_Y)
+
+        self.ship = Ship(ship_starting_point)
         self.bullets = []
         self.meteors = []
         for new_meteor in range(NUMBER_OF_STARTING_METEORS):
